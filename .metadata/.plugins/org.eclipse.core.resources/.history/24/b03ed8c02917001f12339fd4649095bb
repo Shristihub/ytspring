@@ -1,0 +1,22 @@
+package com.productapp.repository;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+import com.productapp.model.Product;
+
+@Mapper
+public interface IProductRepository {
+	@Insert("insert into product(product_name,price,brand,category) values(#{productName},#{price},#{brand},#{category})")
+	Product addProduct(Product product);
+	@Up
+	Product updateProduct(Product product);
+	void deleteProduct(int productId);
+	Product getById(int productId);
+	List<Product> getAll();
+	List<Product> getByBrand(String brand);
+	List<Product> getByLesserPrice(double price);
+	
+}
